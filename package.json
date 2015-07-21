@@ -5,7 +5,7 @@
   "description": "Awesome website",
   "main": "index.js",
   "scripts": {
-   
+    "minify": "imagemin img img"   
   },
   "repository": {
     "type": "git",
