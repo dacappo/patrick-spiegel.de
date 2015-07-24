@@ -6,6 +6,20 @@ var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var rsync = require('gulp-rsync');
 var del = require('del');
+var useref = require('gulp-useref');
+var gulpif = require('gulp-if');
+
+gulp.task('combine', function () {
+  var assets = useref.assets();
+	        
+  return gulp.src('index.html')
+    .pipe(assets)
+    .pipe(gulpif('*.js', uglify()))
+    .pipe(gulpif('*.css', minifyCss()))
+    .pipe(assets.restore())
+    .pipe(useref())
+    .pipe(gulp.dest('build/'));
+});
 
 gulp.task('clean', function() {
   return del(['build/**/*']);
@@ -51,7 +65,7 @@ gulp.task('copy-favicon', function() {
 
 gulp.task('copy',['copy-bower','copy-favicon']);
 
-gulp.task('build', ['copy', 'minify-html', 'minify-img', 'minify-css', 'minify-js']);
+gulp.task('build', ['copy', 'combine', 'minify-img']);
 
 gulp.task('deploy', function() {
   gulp.src(['build/'])
