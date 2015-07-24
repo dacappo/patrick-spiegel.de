@@ -5,6 +5,11 @@ var pngquant = require('imagemin-pngquant');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var rsync = require('gulp-rsync');
+var del = require('del');
+
+gulp.task('clean', function() {
+  return del(['build/**/*']);
+});
 
 gulp.task('minify-html', function(){
   return gulp.src('*.html')
@@ -34,14 +39,27 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest('build/css/'))
 });
 
-gulp.task('build', ['minify-html', 'minify-img', 'minify-css', 'minify-js']);
+gulp.task('copy-bower', function() {
+  return gulp.src('bower_components/**/*')
+      .pipe(gulp.dest('build/bower_components/'));
+});
+
+gulp.task('copy-favicon', function() {
+  return gulp.src('favicon.*')
+      .pipe(gulp.dest('build/'));
+});
+
+gulp.task('copy',['copy-bower','copy-favicon']);
+
+gulp.task('build', ['copy', 'minify-html', 'minify-img', 'minify-css', 'minify-js']);
 
 gulp.task('deploy', function() {
-  gulp.src('build/*')
+  gulp.src(['build/'])
     .pipe(rsync({
       root: 'build',
       hostname: 'patrick@patrick-spiegel.de',
       destination: '/var/www/html/',
-      progress: true
+      progress: true,
+      recursive: true
     }))
 });
