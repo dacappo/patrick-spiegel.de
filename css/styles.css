@@ -192,7 +192,7 @@ h2::after { content: " "; border: solid 2px #00aeef; display: block; width: 35px
 }
 
 @media (max-width: 992px) {
-	.inner { padding-top: 50px; }
+	.inner { padding-top: 30px; }
 }
 /* ==========================================================================
 Navigation
