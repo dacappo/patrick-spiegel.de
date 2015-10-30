@@ -238,9 +238,9 @@ h1.arrow { font-size: 15px; text-transform: uppercase; color: #353535; letter-sp
 /* ==========================================================================
 Features
 ========================================================================== */
-.cut {position:absolute; z-index:1; top:-100px; height:0; width:0; border-top:100px solid transparent; box-sizing:border-box;}
-.cut-top-right {border-right: 850px solid #f3f5f8; right:0;}
-.cut-top-left {border-left: 850px solid #f3f5f8; left:0;}
+.cut {position:absolute; top:-80px; height:0; width:0; border-top:80px solid transparent; box-sizing:border-box;}
+.cut-top-right {border-right: 10px solid #f3f5f8; right:0;}
+.cut-top-left {border-left: 10px solid #f3f5f8; left:0;}
 
 
 .features-wrapper, .team-wrapper { margin: 70px 0 0; }
