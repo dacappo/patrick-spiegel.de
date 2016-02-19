@@ -10,4 +10,6 @@
 
   global.addEventListener("resize", resize);
   resize();
+
+  document.getElementById('header-image').className += 'loaded';
 })(window);

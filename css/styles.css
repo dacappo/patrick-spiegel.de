@@ -197,7 +197,27 @@ h2::after { content: " "; border: solid 2px #00aeef; display: block; width: 35px
 /* ==========================================================================
 Hero
 ========================================================================== */
-.hero { background: url('../img/header-bw-bg.jpg') no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; padding: 60px 0 200px 0; height: auto; }
+
+#home {
+  position: relative;
+}
+#header-image {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background: url('../img/header-bw-bg.jpg') no-repeat center center; 
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover;
+  transform: translate3d(0,0,0) scale(1.25);
+}
+#header-image.loaded {
+  transform: scale(1);
+  transition: 12s transform;
+}
+.hero {padding: 60px 0 200px 0; height: auto; }
 .hero h1 { font-size: 40px; letter-spacing: 12px; margin: 10px; }
 .hero h1 span { color: #FFFFFF; display: inline-block; }
 .hero p { letter-spacing: 1px; }
