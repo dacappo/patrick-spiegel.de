@@ -35,27 +35,7 @@ $(document).ready(function() {
 
 });
 
-/***************** Slide-In Nav ******************/
 
-$(window).load(function() {
-
-	$('#nav-toggle').click(function() {
-		$('.pull').fadeToggle("slow","linear")
-	});
-
-	$('#twitter').click(function() {
-		window.open("https://twitter.com/PatrickSpiegel");
-	});
-
-	$('#linkedin').click(function() {
-		window.open("https://de.linkedin.com/pub/patrick-spiegel/70/657/60b");
-	});
-
-	$('#email').click(function() {
-		window.location.href = "mailto:mail@patrick-spiegel.de";
-	});
-
-});
 
 /***************** Smooth Scrolling ******************/
 

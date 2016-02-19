@@ -179,7 +179,7 @@ h2::after { content: " "; border: solid 2px #00aeef; display: block; width: 35px
 .dark-bg { background: #f3f5f8; }
 .light-bg { background-color: #fff; }
 .dark-box { background: #f3f5f8; -webkit-box-shadow: 0px 3px 0px 0px #f0f2f4; -moz-box-shadow: 0px 3px 0px 0px #f0f2f4; box-shadow: 0px 3px 0px 0px #f0f2f4; }
-.light-box { background-color: #fff; -webkit-box-shadow: 0px 3px 0px 0px #f0f2f4; -moz-box-shadow: 0px 3px 0px 0px #f0f2f4; box-shadow: 0px 3px 0px 0px #f0f2f4; padding: 20px 0; }
+.light-box {display: block; background-color: #fff; -webkit-box-shadow: 0px 3px 0px 0px #f0f2f4; -moz-box-shadow: 0px 3px 0px 0px #f0f2f4; box-shadow: 0px 3px 0px 0px #f0f2f4; padding: 20px 0; }
 .light-box:hover, .light-box:focus { -webkit-box-shadow: 0px 3px 0px 0px #00aeef; -moz-box-shadow: 0px 3px 0px 0px #00aeef; box-shadow: 0px 3px 0px 0px #00aeef; }
 .box-hover { transition: all 500ms ease-in-out; -webkit-transition: all 500ms ease-in-out; -moz-transition: all 500ms ease-in-out; -o-transition: all 500ms ease-in-out; }
 .box-hover:hover, .box-hover:focus { transform: translate(0, -15px); -webkit-transform: translate(0, -15px); -ms-transform: translate(0, -15px); }
