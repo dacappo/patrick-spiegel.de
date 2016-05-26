@@ -9,6 +9,12 @@ var del = require('del');
 var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
 
+// Clean build directory
+gulp.task('clean', function() {
+  return del(['build/**/*']);
+});
+
+// Combine and minify scripts and stylesheets
 gulp.task('combine', function () {
   var assets = useref.assets();
 	        
@@ -21,16 +27,14 @@ gulp.task('combine', function () {
     .pipe(gulp.dest('build/'));
 });
 
-gulp.task('clean', function() {
-  return del(['build/**/*']);
-});
-
-gulp.task('minify-html', function(){
-  return gulp.src('*.html')
+// Minify HTML pages
+gulp.task('minify-html', ['combine'], function() {
+  return gulp.src('build/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('build'))
 });
 
+// Minify imgaes
 gulp.task('minify-img', function() {
   return gulp.src('img/*')
     .pipe(imagemin({
@@ -41,32 +45,22 @@ gulp.task('minify-img', function() {
     .pipe(gulp.dest('build/img/'));
 });
 
-gulp.task('minify-js', function() {
-  return gulp.src('js/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('build/js/'));
+// Copy all fonts to build directory
+gulp.task('copy-fonts', function() {
+  return gulp.src(['fonts/**/*', 'bower_components/font-awesome/fonts/**/*'])
+      .pipe(gulp.dest('build/fonts/'));
 });
 
-gulp.task('minify-css', function() {
-  return gulp.src('css/*.css')
-    .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('build/css/'))
-});
-
-gulp.task('copy-bower', function() {
-  return gulp.src('bower_components/**/*')
-      .pipe(gulp.dest('build/bower_components/'));
-});
-
+// Copy favicon to build directory
 gulp.task('copy-favicon', function() {
   return gulp.src('favicon.*')
       .pipe(gulp.dest('build/'));
 });
 
-gulp.task('copy',['copy-bower','copy-favicon']);
+// Main build task
+gulp.task('build', ['copy-favicon', 'copy-fonts', 'combine', 'minify-html', 'minify-img']);
 
-gulp.task('build', ['copy', 'combine', 'minify-img']);
-
+// Define deploy to webserver
 gulp.task('deploy', function() {
   gulp.src(['build/'])
     .pipe(rsync({
