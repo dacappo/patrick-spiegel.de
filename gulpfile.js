@@ -8,7 +8,7 @@ var rsync = require('gulp-rsync');
 var del = require('del');
 var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
-var critical = require('critical');
+var critical = require('critical').stream;
 
 // Clean build directory
 gulp.task('clean', function() {
@@ -59,15 +59,9 @@ gulp.task('copy-favicon', function() {
 });
 
 gulp.task('critical', ['combine', 'minify-html'], function() {
-  return critical.generate({
-    inline: true,
-    base: 'build/',
-    src: 'index.html',
-    dest: 'build/index.html',
-    width: 1300,
-    height: 900,
-    extract: true
-  });
+  return gulp.src('build/*.html')
+      .pipe(critical({base: 'build/', inline: true, css: ['build/css/combined.css']}))
+      .pipe(gulp.dest('build'));
 });
 
 // Main build task
