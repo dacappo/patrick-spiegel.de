@@ -200,6 +200,7 @@ Hero
 
 #home {
   position: relative;
+  overflow: hidden;
 }
 #header-image {
   position: absolute;
