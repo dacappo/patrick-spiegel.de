@@ -8,6 +8,7 @@ var rsync = require('gulp-rsync');
 var del = require('del');
 var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
+var critical = require('critical');
 
 // Clean build directory
 gulp.task('clean', function() {
@@ -57,8 +58,20 @@ gulp.task('copy-favicon', function() {
       .pipe(gulp.dest('build/'));
 });
 
+gulp.task('critical', ['combine', 'minify-html'], function() {
+  return critical.generate({
+    inline: true,
+    base: 'build/',
+    src: 'index.html',
+    dest: 'build/index.html',
+    width: 1300,
+    height: 900,
+    extract: true
+  });
+});
+
 // Main build task
-gulp.task('build', ['copy-favicon', 'copy-fonts', 'combine', 'minify-html', 'minify-img']);
+gulp.task('build', ['copy-favicon', 'copy-fonts', 'combine', 'minify-html', 'minify-img', 'critical']);
 
 // Define deploy to webserver
 gulp.task('deploy', function() {
