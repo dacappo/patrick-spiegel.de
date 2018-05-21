@@ -187,7 +187,7 @@ h2::after { content: " "; border: solid 2px #00aeef; display: block; width: 35px
 .nopadding { padding: 0; }
 
 @media (min-width: 992px) {
-	.inner { padding-top: 170px; }
+	.inner { padding-top: 150px; }
 }
 
 @media (max-width: 992px) {
