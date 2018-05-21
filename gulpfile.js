@@ -16,15 +16,11 @@ gulp.task('clean', function() {
 });
 
 // Combine and minify scripts and stylesheets
-gulp.task('combine', function () {
-  var assets = useref.assets();
-	        
+gulp.task('combine', function () {	        
   return gulp.src('index.html')
-    .pipe(assets)
+    .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', minifyCss()))
-    .pipe(assets.restore())
-    .pipe(useref())
     .pipe(gulp.dest('build/'));
 });
 
